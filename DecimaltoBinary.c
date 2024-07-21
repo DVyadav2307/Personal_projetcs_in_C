@@ -13,7 +13,6 @@ system("cls");
 			
 			if (decimal % 2 == 0)
 			{
-				
 				store[i] = 0;
 				decimal = decimal / 2;
 			}
