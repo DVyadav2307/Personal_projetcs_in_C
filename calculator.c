@@ -111,7 +111,7 @@ void add(){
 	float num1, num2, sum;
 
 	printf("\nEnter numbers with space: ");
-	scanf_s("%f%f", &num1, &num2);
+	scanf("%f%f", &num1, &num2);
 	sum = num1 + num2;
 	printf("%.2f + %.2f = %.2f\n", num1, num2, sum);
 
@@ -126,9 +126,9 @@ void sub(){
 	float num1, num2, diff;
 
 	printf("\nFrom this number: ");
-	scanf_s("%f", &num2);
+	scanf("%f", &num2);
 	printf("Subtract this number: ");
-	scanf_s("%f", &num1);
+	scanf("%f", &num1);
 	diff = num2 - num1;
 	printf("%.2f - %.2f = %.2f\n", num2, num1, diff);
 
@@ -142,9 +142,9 @@ void divide(){
 	float num1, num2, quo;
 
 	printf("\nDividend (nmrtr): ");
-	scanf_s("%f", &num2);
+	scanf("%f", &num2);
 	printf("Divisor (dnmntr): ");
-	scanf_s("%f", &num1);
+	scanf("%f", &num1);
 	quo = num2 / num1;
 	printf("%.2f / %.2f = %.2f\n", num2, num1, quo);
 
@@ -158,7 +158,7 @@ void multiply(){
 	float num1, num2, prod;
 
 	printf("\nEnter numbers with space: ");
-	scanf_s("%f%f", &num1, &num2);
+	scanf("%f%f", &num1, &num2);
 	prod = num1 * num2;
 	printf("%.2f * %.2f = %.2f\n", num1, num2, prod);
 
@@ -212,9 +212,9 @@ void percent(){
 	float nmrtr, dnmntr, percent;
 
 	printf("\nTotal no. of parts (dnmntr): ");
-	scanf_s("%f", &dnmntr);
+	scanf("%f", &dnmntr);
 	printf("percent of parts (nmrtr): ");
-	scanf_s("%f", &nmrtr);
+	scanf("%f", &nmrtr);
 	percent = nmrtr / dnmntr * 100;
 	printf("Percent of %.2f out of %.2f is %.2f\n", nmrtr, dnmntr, percent);
 
