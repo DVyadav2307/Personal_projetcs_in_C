@@ -1,40 +1,41 @@
 #include<stdio.h>
 #include<math.h>
 
+// code resuability
 void opchoice();
 void further_prompts(int);
 
+// operations
 void add();
 void sub();
-int divide();
-int multiply();
-int root();
-int square();
-int inverse();
-int power();
-int percent();
-int trigo();
-int fact();
+void divide();
+void multiply();
+void root();
+void square();
+void inverse();
+void power();
+void percent();
+void trigo();
+void fact();
 
 
 
 int main(){
-
 // Greetings
 	printf("This is a basic calculator dev. in C\n"
 			"By: Divyanshu Yadav\n"
-			"latest edit: 29 Aug 2024\n");
+			"latest edit: 30 Aug 2024\n");
 
 // 0 stands for: no default choice
 // ask user for operation choice
 	opchoice(0);
-
+	return 0;
 }
 
 
 
 void opchoice(int choice){
-
+// if choice != 0 -> operation is pre-determined
 	if (choice == 0){
 		printf("\nFollowing operations are supported:\n"
 				"1.Addition\n"
@@ -81,7 +82,6 @@ void opchoice(int choice){
 
 
 void further_prompts(int numchoice){
-
 	char choice;
 
 	printf("\nDo you want to redo? Yes->[y]: ");
@@ -108,7 +108,6 @@ void further_prompts(int numchoice){
 
 
 void add(){
-
 	float num1, num2, sum;
 
 	printf("\nEnter numbers with space: ");
@@ -124,7 +123,6 @@ void add(){
 
 
 void sub(){
-	
 	float num1, num2, diff;
 
 	printf("\nFrom this number: ");
@@ -140,8 +138,7 @@ void sub(){
 }
 
 
-int divide(){
-
+void divide(){
 	float num1, num2, quo;
 
 	printf("\nDividend (nmrtr): ");
@@ -157,8 +154,7 @@ int divide(){
 }
 
 
-int multiply(){
-
+void multiply(){
 	float num1, num2, prod;
 
 	printf("\nEnter numbers with space: ");
@@ -172,221 +168,94 @@ int multiply(){
 }
 
 
-int root()					/*SQUARE ROOT*/
-{
-start5:
-	printf_s("\nEnter the number whose sqrt you want to know:");
-	double num1, num2;
-	scanf_s("%lf", &num1);
-	num2 = sqrt(num1);
-	printf_s("\nthe square root of %lf is %lf\n\n >>>press 1 for another sqrt\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num1, num2);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start5;
+void root(){
+	float num;
+
+	printf("\nEnter the base: ");
+	scanf("%f",&num);
+	printf("The square-root of %.2f is %.2f\n", num, sqrt(num));
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(5);
 	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
+	
+	
+void power(){
+	float base, power;
+	
+	printf("\nEnter base & power with space:");
+	scanf("%f%f", &base, &power);
+	printf("%.2f ^ %.2f = %.2f", base, power, pow(base, power));
+	
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(8);
+
 }
 
 
-int square()					/*SQUARE*/
-{
-start6:
-	printf_s("\nenter the number whose square you want to find out: ");
-	double num1, num2 = 2, num3;
-	scanf_s("%lf", &num1);
-	num3 = pow(num1, num2);
-	printf_s("\n the square of %lf is %lf.\n >>>press 1 for another square operation\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num1, num3);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start6;
-	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
+void inverse(){
+	float num;
+
+	printf("\nEnter the number: ");
+	scanf("%f",&num);
+	printf("Inverse of %.2f is %.2f\n", num, 1/num);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(6);
 }
 
 
-int inverse()				/*INVERSE*/
-{
-start7:
-	printf_s("\nEnter the number whose inverse you want to find out :");
-	double num1, num2;
-	scanf_s("%lf", &num1);
-	num2 = 1 / num1;
-	printf_s("\nThe inverse of %lf is %lf.\n >>>press 1 for another inverse operation\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num1, num2);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start7;
-	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
+void percent(){
+	float nmrtr, dnmntr, percent;
+
+	printf("\nTotal no. of parts (dnmntr): ");
+	scanf_s("%f", &dnmntr);
+	printf("percent of parts (nmrtr): ");
+	scanf_s("%f", &nmrtr);
+	percent = nmrtr / dnmntr * 100;
+	printf("Percent of %.2f out of %.2f is %.2f\n", nmrtr, dnmntr, percent);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(7);
 }
 
 
-int percent()				/*PERCENT*/
-{
-start8:
-	printf_s("\nEnter the numerator then denominator with space in b/w them");
-	double num1, num2, num3;
-	scanf_s("%lf%lf", &num1, &num2);
-	num3 = (num1 / num2) * 100;
-	printf_s("The calculated percentage is %lf.\n >>>press 1 for another percent operation\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num3);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start8;
+
+void fact(){
+	int num, clone_num , fact = 1;
+
+	printf("\nEnter the number: ");
+	scanf("%d",&num);
+	clone_num = num;
+	while(num > 1){
+		fact = fact * num;
+		num--;
 	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
+	printf("%d! = %d\n", clone_num, fact);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(9);
 }
 
 
-int power()					/*EXPONENTS*/
-{
-start9:
-	printf_s("\nenter the base and power saparately\n\n first enter the base then power with a space between them: ");
-	double num1, num2, num3;
-	scanf_s("%lf%lf", &num1, &num2);
-	num3 = pow(num1, num2);
-	printf_s("\nthe %lf raised to the power %lf is %lf.\n >>>press 1 for another power operation\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num1, num2, num3);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start9;
-	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
-}
+void trigo(){
+	float degrees, radians;
 
+	printf("\nEnter angle in degrees:");
+	scanf("%f", &degrees);
 
-int fact()				/*FACTORIAL*/
-{
-start11:
-	printf_s("\nEnter the number whoose factorial you want to find out>>");
-	double num1, fact = 1;
-	scanf_s("%lf", &num1);
-	for (int i = 1; i <= num1; i++)
-	{
-		fact = fact * i;
-	}
-	printf_s("the factorial of %lf is %lf\n >> > press 1 for another factorial operation\n >> > press 2 for diffrent operator choice\n >> > press any else to exit", num1, fact);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start11;
-	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
-}
-
-
-int trigo()				/*TRIGNOMETRY*/
-{
-start10:
-	printf_s("\nEnter the angle 'X' whose all trignometric ratios will be provided");
-	double num2, num1, pi;
-	scanf_s("%lf", &pi);
-	num1 = pi * (0.01746);
-	num2 = sin(num1);//sin
-	printf_s("\nThe sin of angle %lf is %lf", pi, num2);
-	num2 = cos(num1);//cos
-	if (pi == 90)
-		num2 = 0;
-	printf_s("\nThe cos of angle %lf is %lf", pi, num2);
-	num2 = tan(num1);//tan
-	if (pi == 90)
-		printf_s("\nThe tan of angle %lf is inf", pi);
-	else
-		printf_s("\nThe tan of angle %lf is %lf", pi, num2);
-	num2 = 1 / sin(num1);//cosec
-	printf_s("\nThe cosec of angle %lf is %lf", pi, num2);
-	num2 = 1 / cos(num1);//sec
-	if (pi == 90)
-		printf_s("\nThe sec of angle %lf is inf", pi);
-	else
-		printf_s("\nThe sec of angle %lf is %lf", pi, num2);
-	num2 = 1 / tan(num1);//cot
-	if (pi == 90)
-		num2 = 0;
-	printf_s("\nThe cot of angle %lf is %lf\n\n >>>press 1 for another trigno operation\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", pi, num2);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start10;
-	}
-	else if (choice == 2)
-	{
-		//system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		//_getch();
-	}
-	return 0;
+	radians = 3.14159265358979323846 / 180 * degrees;
+	
+	printf("sin(%.2f) = %.2f\t cosec(%.2f) = %.2f\n", radians, sin(radians), radians, 1/sin(radians));
+	printf("cos(%.2f) = %.2f\t sec(%.2f) = %.2f\n", radians, cos(radians), radians, 1/cos(radians));
+	printf("tan(%.2f) = %.2f\t cot(%.2f) = %.2f\n", radians, tan(radians), radians, 1/tan(radians));
+	
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(10);
 }
