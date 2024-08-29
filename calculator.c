@@ -1,10 +1,12 @@
-#include<math.h>
 #include<stdio.h>
-#include<conio.h>
-#include<windows.system.h>
-int add();
-int sub();
-int	divide();
+#include<math.h>
+
+void opchoice();
+void further_prompts(int);
+
+void add();
+void sub();
+int divide();
 int multiply();
 int root();
 int square();
@@ -15,205 +17,158 @@ int trigo();
 int fact();
 
 
-int main()					/*MAIN FUNCTION*/
-{
-start:
-	system("color fc");
-	printf_s("WELCOME   #NOTE- *ONLY NUMERIC INPUTS ARE ALLOWED*\n\n");
-	int code;
-	printf_s("what do you want to find out? (choose the code from below and then enter the code to proceed)\n\n   addition-[1]     substraction-[2]     division-[3]       multiplication-[4]     sqrt-[5]\n\n   square-[6]       inverse-[7]          percent-[8]        exponents-[9]          factorial-[10]\n\n   trignometry-[11]\n\nType your code here>>>");
-	scanf_s("%d", &code);
-	if (code == 1)//addition//
-	{
-		int add();
-		if (add() == 2)
-			goto start;
-	}
-	else if (code == 2)//substraction//
-	{
-		int sub();
-		if (sub() == 2)
-			goto start;
-	}
-	else if (code == 3)//division//
-	{
-		int divide();
-		if (divide() == 2)
-			goto start;
-	}
-	else if (code == 4)//multiplication//
-	{
-		int multiply();
-		if (multiply() == 2)
-			goto start;
-	}
-	else if (code == 5)//square root//
-	{
-		int root();
-		if (root() == 2)
-			goto start;
-	}
-	else if (code == 6)//square//
-	{
-		int square();
-		if (square() == 2)
-			goto start;
-	}
-	else if (code == 7)//Inverse//
-	{
-		int inverse();
-		if (inverse() == 2)
-			goto start;
-	}
-	else if (code == 8)	//percentage//
-	{
-		int percent();
-		if (percent() == 2)
-			goto start;
-	}
-	else if (code == 9)//exponents//
-	{
-		int power();
-		if (power() == 2)
-			goto start;
-	}
-	else if (code == 10)//factorial//
-	{
-		int fact();
-		if (fact() == 2)
-			goto start;
-	}
-	else if (code == 11)//trignometry//
-	{
-		int trigo();
-		if (trigo() == 2)
-			goto start;
-	}
-	else			   //invalid input//
-	{
-		printf_s("you are restricted to enter code till 11 only\n\nNOTE-*If you are unable to reexecute the program then you might have enterd a Character value in the code input,\n press ENTER or try to REOPEN the program*\n");
-		_getch();
-		system("cls");
-		goto start;
-	}
-	_getch();
-	return 0;
+
+int main(){
+
+// Greetings
+	printf("This is a basic calculator dev. in C\n"
+			"By: Divyanshu Yadav\n"
+			"latest edit: 29 Aug 2024\n");
+
+// 0 stands for: no default choice
+// ask user for operation choice
+	opchoice(0);
+
 }
 
 
-int add()							/*ADDITION*/
-{
-start1:
-	printf_s("\n*you are restricted to add two numbers at a time*\n\n enter the numbers you want to add:");
-	double num1, num2;
-	scanf_s("%lf%lf", &num1, &num2);
-	double sum;
+
+void opchoice(int choice){
+
+	if (choice == 0){
+		printf("\nFollowing operations are supported:\n"
+				"1.Addition\n"
+				"2.Subtraction\n"
+				"3.Division\n"
+				"4.Multiplication\n"
+				"5.Square root\n"
+				"6.Inverse (multiplicative)\n"
+				"7.Percentage\n"
+				"8.Exponents\n"
+				"9.Factorial\n"
+				"10.Trignometric Operatios\n"
+				"\nEnter your choice:");
+		scanf("%d", &choice);
+	}
+
+	switch (choice)
+	{
+	case 1:
+		add(); break;
+	case 2:
+		sub(); break;
+	case 3:
+		divide(); break;
+	case 4:
+		multiply(); break;
+	case 5:
+		root(); break;
+	case 6:
+		inverse(); break;
+	case 7:
+		percent(); break;
+	case 8:
+		power(); break;
+	case 9:
+		fact(); break;
+	case 10:
+		trigo(); break;
+	default:
+		printf("Invalid choice!, retry.\n"); break;
+	}
+}
+
+
+
+void further_prompts(int numchoice){
+
+	char choice;
+
+	printf("\nDo you want to redo? Yes->[y]: ");
+	scanf("%s", &choice);
+
+	if(choice == 'y'){
+		opchoice(numchoice);
+	}
+	else{
+		// flushing the keyboard  buffer
+		while((choice = getchar()) != '\n');
+
+		printf("Do you want another operation? Yes->[y]:");
+		scanf("%c", &choice);
+		if(choice == 'y'){
+			opchoice(0);
+		}
+		else{
+			printf("Goodbye!\n");
+		}
+	}
+}
+
+
+
+void add(){
+
+	float num1, num2, sum;
+
+	printf("\nEnter numbers with space: ");
+	scanf_s("%f%f", &num1, &num2);
 	sum = num1 + num2;
-	printf_s("\nthe ans is %lf\n\n >>>press 1 for another sum\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", sum);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start1;
-	}
-	else if (choice == 2)
-	{
-		system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		_getch();
-	}
-	return 0;
+	printf("%.2f + %.2f = %.2f\n", num1, num2, sum);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(1);
 }
 
 
-int sub()							/*SUBTRACTION*/
-{
-start2:
-	printf_s("\n*you are restricted to sub two numbers at a time*\n\n enter the numbers you want to sub:");
-	double num1, num2;
-	scanf_s("%lf%lf", &num1, &num2);
-	double diff;
-	diff = num1 - num2;
-	printf_s("\nthe ans is %lf\n\n >>>press 1 for another diff\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", diff);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start2;
-	}
-	else if (choice == 2)
-	{
-		system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		_getch();
-	}
-	return 0;
+
+void sub(){
+	
+	float num1, num2, diff;
+
+	printf("\nFrom this number: ");
+	scanf_s("%f", &num2);
+	printf("Subtract this number: ");
+	scanf_s("%f", &num1);
+	diff = num2 - num1;
+	printf("%.2f - %.2f = %.2f\n", num2, num1, diff);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(2);
 }
 
 
-int divide()				/*DIVISION*/
-{
-start3:
-	printf_s("\n enter the numbers you want to divide:");
-	double num1, num2;
-	scanf_s("%lf%lf", &num1, &num2);
-	double div;
-	div = num1 / num2;
-	printf_s("\nthe ans of %lf/%lf is %lf\n\n >>>press 1 for another division\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", num1, num2, div);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start3;
-	}
-	else if (choice == 2)
-	{
-		system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		_getch();
-	}
-	return 0;
+int divide(){
+
+	float num1, num2, quo;
+
+	printf("\nDividend (nmrtr): ");
+	scanf_s("%f", &num2);
+	printf("Divisor (dnmntr): ");
+	scanf_s("%f", &num1);
+	quo = num2 / num1;
+	printf("%.2f / %.2f = %.2f\n", num2, num1, quo);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(3);
 }
 
 
-int multiply()			/*MULTIPLICATION*/
-{
-start4:
-	printf_s("\n*you are restricted to multiply two numbers at a time*\n\n enter the numbers you want to multiply:");
-	double num1, num2;
-	scanf_s("%lf%lf", &num1, &num2);
-	double prod;
+int multiply(){
+
+	float num1, num2, prod;
+
+	printf("\nEnter numbers with space: ");
+	scanf_s("%f%f", &num1, &num2);
 	prod = num1 * num2;
-	printf_s("\nthe ans is %lf\n\n >>>press 1 for another product\n >>>press 2 for diffrent operator choice\n >>>press any else to exit", prod);
-	int choice;
-	scanf_s("%d", &choice);
-	if (choice == 1)
-	{
-		goto start4;
-	}
-	else if (choice == 2)
-	{
-		system("cls");
-		return choice;
-	}
-	else
-	{
-		printf_s("\nThank you");
-		_getch();
-	}
-	return 0;
+	printf("%.2f * %.2f = %.2f\n", num1, num2, prod);
+
+	// prompting for option furthur operations
+	// 1 stands fro choie-1 i.e. addition
+	further_prompts(4);
 }
 
 
@@ -233,13 +188,13 @@ start5:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -261,13 +216,13 @@ start6:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -289,13 +244,13 @@ start7:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -317,13 +272,13 @@ start8:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -345,13 +300,13 @@ start9:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -376,13 +331,13 @@ start11:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
@@ -425,13 +380,13 @@ start10:
 	}
 	else if (choice == 2)
 	{
-		system("cls");
+		//system("cls");
 		return choice;
 	}
 	else
 	{
 		printf_s("\nThank you");
-		_getch();
+		//_getch();
 	}
 	return 0;
 }
